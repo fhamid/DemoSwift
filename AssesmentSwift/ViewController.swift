@@ -62,23 +62,23 @@ class ViewController: UIViewController {
                 }else{
                     dispatch_async(dispatch_get_main_queue()) {
                         self?.hideHudDisplay()
+                        self?.showAlertWithMessage("No Data Available")
                     }
-                    self?.showAlertWithMessage("No Data Available")
                 }
             }
             catch let error as NSError {
                 dispatch_async(dispatch_get_main_queue()) {
                     self?.hideHudDisplay()
+                    self?.showAlertWithMessage("Error Parsing Data! - \(error.description)")
                 }
-                self?.showAlertWithMessage("Error Parsing Data! - \(error.description)")
                 
             }
             
             }) {[weak self](operation: AFHTTPRequestOperation, error: NSError) -> Void in
                 dispatch_async(dispatch_get_main_queue()) {
                     self?.hideHudDisplay()
+                    self?.showAlertWithMessage("Network Error! - \(error.description)")
                 }
-                self?.showAlertWithMessage("Network Error! - \(error.description)")
                 
             }
         
